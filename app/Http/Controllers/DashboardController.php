@@ -9,7 +9,7 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $mesage = session()->get('message');
-        return view('dashboard', [
+        return view('admin.dashboard', [
             'message' => $mesage
         ]);
     }

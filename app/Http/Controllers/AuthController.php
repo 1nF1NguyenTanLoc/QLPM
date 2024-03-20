@@ -11,12 +11,12 @@ class AuthController extends Controller
 
     public function viewDangnhap()
     {
-        return view('user_login');
+        return view('user.user_login');
     }
 
     public function viewDangki()
     {
-        return view('dangki');
+        return view('user.dangki');
     }
 
     public function dangKi(Request $request)
@@ -25,15 +25,32 @@ class AuthController extends Controller
         $password = $request->password;
         $confirm_password = $request->confirm_password;
         $email = $request->email;
+        $khoa = $request->khoa;
+        $sdt = $request->sdt;
 
         if ($password != $confirm_password) {
-            return view('dangki', [
+            return view('user.dangki', [
                 'message' => 'Sai xác nhận mật khẩu'
             ]);
         }
+        if ($name == '') {
+            return view('user.dangki', [
+                'message' => 'Điền thông tin tên'
+            ]);
+        }
         if ($email == '') {
-            return view('dangki', [
+            return view('user.dangki', [
                 'message' => 'Điền thông tin Email'
+            ]);
+        }
+        if ($khoa == '') {
+            return view('user.dangki', [
+                'message' => 'Chọn Khoa'
+            ]);
+        }
+        if ($sdt == '') {
+            return view('user.dangki', [
+                'message' => 'Điền thông tin liên lạc'
             ]);
         }
 
@@ -41,11 +58,13 @@ class AuthController extends Controller
             'name' => $name,
             'email' => $email,
             'vai_tro' => 'giang_vien',
-            'password' => bcrypt($password)
+            'password' => bcrypt($password),
+            'khoa' => $khoa,
+            'sdt' => $sdt,
         ];
         $user = User::create($data);
 
-        return view('dangki', [
+        return view('user.dangki', [
             'message' => 'Tạo tài khoản thành công'
         ]);
     }
@@ -56,13 +75,31 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
+        if ($request->email == '' or $request->password == '')
+        {
+            
+        return view('user.user_login', [
+            'message' => 'Vui lòng điền thông tin',
+        ]);
+        }
 
         if (Auth::attempt($data)) 
         {
-            return redirect()->route('dashboard')->with('message', 'Đăng nhập thành công');
+            return redirect()->route('trangchu');
         }
-        return view('user_login', [
+
+        return view('user.user_login', [
             'message' => 'sai thông tin',
         ]);
+    }
+    public function dangXuat(Request $request)
+    {
+        Auth::logout(); // Đăng xuất người dùng
+
+        $request->session()->invalidate(); // Hủy bỏ các phiên đăng nhập
+
+        $request->session()->regenerateToken(); // Tạo lại CSRF token
+
+        return redirect()->route('trangchu'); // Chuyển hướng người dùng đến trang chính sau khi đăng xuất
     }
 }

@@ -1,0 +1,75 @@
+/* CSS */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+/* resources/css/style.css */
+.profile-card {
+    margin: 0 auto; /* Căn giữa theo chiều ngang */
+    max-width: 400px; /* Chiều rộng tối đa */
+}
+/* Phần header của thẻ card */
+.card-header {
+    background-color: #007bff; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    padding: 10px; /* Khoảng cách lề */
+    font-weight: bold; /* Font in đậm */
+}
+
+/* Phần body của thẻ card */
+.card-body {
+    padding: 20px; /* Khoảng cách lề */
+}
+
+/* Chỉnh kích thước nút */
+.btn {
+    padding: 10px 20px; /* Khoảng cách lề */
+    font-size: 16px; /* Kích thước chữ */
+}
+
+/* Chỉnh màu nền cho input */
+.form-control {
+    background-color: #f8f9fa; /* Màu nền */
+    border-color: #ced4da; /* Màu viền */
+}
+
+/* Chỉnh màu chữ cho input khi focus */
+.form-control:focus {
+    border-color: #007bff; /* Màu viền */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Hiệu ứng focus */
+}
+

@@ -23,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'vai_tro',
+        'khoa',
+        'sdt',
         'password',
     ];
 

@@ -8,6 +8,16 @@ class TrangChuController extends Controller
 {
     public function index()
     {
-        return view('trangchu');
+        return view('home.trangchu');
+    }
+
+    public function viewProfile()
+    {
+        return view('user.profile');
+    }
+
+    public function datPhong()
+    {
+        return view('user.datphong');
     }
 }
