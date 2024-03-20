@@ -25,6 +25,7 @@ class User extends Authenticatable
         'vai_tro',
         'khoa',
         'sdt',
+        'phai',
         'password',
     ];
 

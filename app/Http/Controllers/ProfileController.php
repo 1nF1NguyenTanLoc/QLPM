@@ -17,6 +17,10 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        $user = User::findOrFail(auth()->id());
+        
+        $user->phai = (bool) $request->phai;
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:nguoi_dung,email,' . auth()->id(),
@@ -24,7 +28,6 @@ class ProfileController extends Controller
             'sdt' => 'required|string|max:20', // Thêm validation cho 'sdt'
         ]);
 
-        $user = User::findOrFail(auth()->id());
         $user->update($request->all());
 
         return redirect()->route('profile.show')->with('success', 'Thông tin đã được cập nhật thành công.');
