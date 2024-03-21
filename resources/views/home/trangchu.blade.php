@@ -69,6 +69,11 @@
                       </button>
                       <div class="collapse navbar-collapse" id="navbarsExample04">
                          <ul class="navbar-nav mr-auto">
+                           @auth
+                           <li class="nav-item">
+                              <a class="nav-link" href="{{route('profile.show')}}">{{ Auth::user()->name }}</a>
+                           </li>
+                           @endauth
                             <li class="nav-item">
                                <a class="nav-link" href="#room">Phòng Máy</a>
                             </li>
@@ -78,11 +83,6 @@
                             <li class="nav-item">
                                <a class="nav-link" href="#contact">Liên hệ</a>
                             </li>
-                            @auth
-                            <li class="nav-item">
-                               <a class="nav-link" href="{{route('profile.show')}}">Profile</a>
-                            </li>
-                            @endauth
                          </ul>
                          @auth <!-- Kiểm tra nếu người dùng đã đăng nhập -->
                          <div id="logout-button">
