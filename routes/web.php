@@ -13,6 +13,7 @@ Route::get('/', [TrangChuController::class, 'index'])->name('trangchu');
 Route::post('/', [AuthController::class, 'dangXuat'])->name('dangxuat');
 Route::get('/profile', [TrangChuController::class, 'viewProfile'])->name('thongtin');
 Route::get('/rooms', [PhongConTroller::class, 'index'])->name('datphong');
+Route::get('/rooms/filter', [PhongConTroller::class, 'filter'])->name('rooms.filter');
 Route::get('/sudung', [PhongConTroller::class, 'lichSuSuDungPhongMay'])->name('lichsu');
 Route::post('/phong/{id}/su-dung', [PhongController::class, 'suDungPhong'])->name('phong.su-dung');
 Route::post('/phong/{id}/tra-phong', [PhongController::class, 'traPhong'])->name('phong.tra-phong');

@@ -32,11 +32,11 @@
         <tbody>
             @foreach($lichSu as $suDung)
             <tr>
-                <td>{{ $suDung->id_phong_may }}</td>
-                <td>{{ $suDung->phongMay->ten_phong }}</td>
-                <td>{{ $suDung->mo_ta }}</td>
-                <td>{{ $suDung->thoi_gian_bat_dau }}</td>
-                <td>{{ $suDung->thoi_gian_ket_thuc }}</td>
+                <td style="font-weight:bolder" class="text-white">{{ $suDung->id_phong_may }}</td>
+                <td style="font-weight:bold" class="text-primary">{{ $suDung->phongMay->ten_phong }}</td>
+                <td class="text-warning">{{ $suDung->mo_ta }}</td>
+                <td style="font-weight:inherit" class="text-info">{{ $suDung->thoi_gian_bat_dau }}</td>
+                <td style="font-weight:inherit" class="text-info">{{ $suDung->thoi_gian_ket_thuc }}</td>
             </tr>
             @endforeach
         </tbody>

@@ -41,18 +41,18 @@
         <tbody>
             @foreach($phongs as $phong)
             <tr>
-                <td>{{ $phong->id }}</td>
-                <td>{{ $phong->ten_phong }}</td>
-                <td>{{ $phong->suc_chua }}</td>
-                <td>{{ $phong->vi_tri }}</td>
-                <td>{{ $phong->nguoiSuDung->name ?? 'Chưa có người sử dụng' }}</td>
+                <td style="font-weight:bolder" class="text-white">{{ $phong->id }}</td>
+                <td style="font-weight:bold" class="text-primary">{{ $phong->ten_phong }}</td>
+                <td class="text-secondary">{{ $phong->suc_chua }}</td>
+                <td style="font-weight:inherit" class="text-info">{{ $phong->vi_tri }}</td>
+                <td style="font-weight:bolder" class="text-white">{{ $phong->nguoiSuDung->name ?? 'Chưa có người sử dụng' }}</td>
                 <td>
                     @if($phong->trang_thai === 'san_sang')
-                        Sẵn sàng
+                        <span class="text-success">Sẵn sàng</span>
                     @elseif($phong->trang_thai === 'dang_su_dung')
-                        Đang sử dụng
+                        <span class="text-warning">Đang sử dụng</span>
                     @elseif($phong->trang_thai === 'dang_bao_tri')
-                        Đang bảo trì
+                        <span class="text-danger">Đang bảo trì</span>
                     @endif
                 </td>
                 <td>
@@ -67,7 +67,7 @@
                         <button type="submit" class="btn btn-warning">Trả phòng</button>
                     </form>
                     @elseif($phong->trang_thai === 'dang_bao_tri')
-                        <span>Phòng đang bảo trì</span>
+                        <span class="alert-danger">Phòng đang bảo trì</span>
                     @endif
                 </td>
             </tr>
