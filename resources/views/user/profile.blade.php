@@ -15,7 +15,7 @@
             < </a>
         <a style="text-decoration: none" href="{{ route('profile.show') }}" class="btn btn-primary">
             Chỉnh sửa thông tin </a>
-        <a style="text-decoration: none" href="#" class="btn btn-primary">
+        <a style="text-decoration: none" href="{{ route('profile.password') }}" class="btn btn-primary">
             Thay đổi mật khẩu</a>
     </div>
     <div class="container rounded bg-white mt-5 mb-5">

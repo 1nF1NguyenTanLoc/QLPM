@@ -27,6 +27,7 @@ class AuthController extends Controller
         $email = $request->email;
         $khoa = $request->khoa;
         $sdt = $request->sdt;
+        $phai = $request->phai;
 
         if ($password != $confirm_password) {
             return view('user.dangki', [
@@ -48,25 +49,38 @@ class AuthController extends Controller
                 'message' => 'Chọn Khoa'
             ]);
         }
+        if ($phai == '') {
+            return view('user.dangki', [
+                'message' => 'Chọn giới tính'
+            ]);
+        }
         if ($sdt == '') {
             return view('user.dangki', [
                 'message' => 'Điền thông tin liên lạc'
             ]);
         }
 
+        $existingUser = User::where('name', $request->name)
+        ->orWhere('email', $request->email)
+        ->orWhere('sdt', $request->sdt)
+        ->first();
+        if ($existingUser) {
+            // Nếu thông tin đã tồn tại, xuất thông báo lỗi và chuyển hướng lại
+            return view('user.dangki', ['message' => 'Thông tin đã tồn tại trong hệ thống.']);
+        }
+
         $data = [
             'name' => $name,
             'email' => $email,
             'vai_tro' => 'giang_vien',
+            'phai' => $phai,
             'password' => bcrypt($password),
             'khoa' => $khoa,
             'sdt' => $sdt,
         ];
         $user = User::create($data);
 
-        return view('user.dangki', [
-            'message' => 'Tạo tài khoản thành công'
-        ]);
+        return redirect()->route('user_login');
     }
 
     public function dangNhap(Request $request)

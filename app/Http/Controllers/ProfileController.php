@@ -8,10 +8,16 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    public function show()
+    public function show1()
     {
         $user = User::findOrFail(auth()->id()); // Lấy thông tin profile của người dùng hiện tại
         return view('user.profile', compact('user'));
+    }
+
+    
+    public function show2()
+    {
+        return view('user.password');
     }
     
 
@@ -37,21 +43,21 @@ class ProfileController extends Controller
     {
         $request->validate([
             'current_password' => 'required',
-            'new_password' => 'required|min:8|confirmed',
+            'new_password' => 'required|string|min:8|different:current_password',
+            'confirm_password' => 'required|string|min:8|same:new_password',
         ]);
-
-        // Lấy thông tin người dùng đã đăng nhập
+    
         $user = User::findOrFail(auth()->id());
-
-        // Kiểm tra mật khẩu hiện tại
+    
+        // Kiểm tra xem mật khẩu hiện tại có đúng không
         if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withInput()->with('error', 'Mật khẩu hiện tại không đúng');
+            return redirect()->route('profile.password')->with('error', 'Mật khẩu hiện tại không đúng.');
         }
-
-        // Cập nhật mật khẩu mới cho người dùng
-        $user->password = Hash::make($request->new_password);
+    
+        // Cập nhật mật khẩu mới
+        $user->password = bcrypt($request->new_password);
         $user->save();
-
-        return redirect()->route('home')->with('success', 'Mật khẩu đã được thay đổi thành công');
+    
+        return redirect()->route('profile.password')->with('success', 'Mật khẩu đã được thay đổi thành công.');
     }
 }
