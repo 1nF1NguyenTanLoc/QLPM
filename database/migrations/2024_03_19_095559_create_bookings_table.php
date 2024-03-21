@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('id_nguoi_dung')->constrained('nguoi_dung');
             $table->foreignId('id_phong_may')->constrained('phong_may');
             $table->dateTime('thoi_gian_bat_dau');
-            $table->dateTime('thoi_gian_ket_thuc');
+            $table->dateTime('thoi_gian_ket_thuc')->nullable();
             $table->text('mo_ta')->nullable();
             $table->timestamps();
         });

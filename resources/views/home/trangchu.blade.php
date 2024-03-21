@@ -178,7 +178,7 @@
                       <h2><span class="text_norlam">Bạn cần phòng máy để dạy </span> <br>Đăng ký tại đây</h2>
                    </div>
                    <p>Kiểm tra xem những phòng máy còn trống và tiến hành đăng kí</p>
-                   <a class="read_more" href="{{route('datphong')}}">Đăng kí phòng</a>
+                   <a class="read_more" href="{{ Auth::check() ? route('datphong') : route('user_login') }}">Đăng kí phòng</a>
                 </div>
              </div>
           </div>

@@ -15,9 +15,4 @@ class TrangChuController extends Controller
     {
         return view('user.profile');
     }
-
-    public function datPhong()
-    {
-        return view('user.datphong');
-    }
 }

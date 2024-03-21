@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PhongConTroller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrangChuController;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [TrangChuController::class, 'index'])->name('trangchu');
 Route::post('/', [AuthController::class, 'dangXuat'])->name('dangxuat');
 Route::get('/profile', [TrangChuController::class, 'viewProfile'])->name('thongtin');
-Route::get('/rooms', [TrangChuController::class, 'datPhong'])->name('datphong');
+Route::get('/rooms', [PhongConTroller::class, 'index'])->name('datphong');
+Route::get('/sudung', [PhongConTroller::class, 'lichSuSuDungPhongMay'])->name('lichsu');
+Route::post('/phong/{id}/su-dung', [PhongController::class, 'suDungPhong'])->name('phong.su-dung');
+Route::post('/phong/{id}/tra-phong', [PhongController::class, 'traPhong'])->name('phong.tra-phong');
 Route::get('/login', [AuthController::class, 'viewDangnhap'])->name('user_login');
 Route::post('/login', [AuthController::class, 'dangNhap'])->name('dangnhap_post');
 Route::get('/dangki', [AuthController::class, 'viewDangki'])->name('dangki');
