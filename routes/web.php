@@ -22,6 +22,8 @@ Route::post('/login', [AuthController::class, 'dangNhap'])->name('dangnhap_post'
 Route::get('/dangki', [AuthController::class, 'viewDangki'])->name('dangki');
 Route::post('/dangki', [AuthController::class, 'dangKi'])->name('dangki_post');
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('/admin/users/create', [DashboardController::class, 'createUser'])->name('admin.users.create');
+Route::post('/admin/users', [DashboardController::class, 'taoNguoidung'])->name('admin.users.store');
 Route::get('/profile', [ProfileController::class, 'show1'])->name('profile.show');
 Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 Route::get('/profile/password', [ProfileController::class, 'show2'])->name('profile.password')->middleware('auth');
