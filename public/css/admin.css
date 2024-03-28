@@ -45,6 +45,11 @@ body {
   border: solid 1px #BA68C8
 }
 
+.footer {
+  margin-top: 265px;
+  padding-top: 85px;
+  text-align: center;
+}
 
 table {
 width: 80%;

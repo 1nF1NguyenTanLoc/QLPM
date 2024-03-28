@@ -57,7 +57,7 @@
                                 <select id="phai" class="form-control" name="vai_tro" required>
                                     <option value="giang_vien" {{ $user->vai_tro == 'giang_vien' ? 'selected' : '' }}>
                                         Giảng Viên</option>
-                                    <option value="admin" {{ $user->vai_tro == '1' ? 'admin' : '' }}>Quản Lý
+                                    <option value="admin" {{ $user->vai_tro == 'admin' ? 'selected' : '' }}>Quản Lý
                                     </option>
                                 </select>
                             </div>
@@ -88,3 +88,18 @@
         </div>
     </div>
 </body>
+<!--  footer -->
+<footer>
+    <div class="footer">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Copyright 2024 All Right Reserved By 1nF1 | Nguyễn Tấn Lộc</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->

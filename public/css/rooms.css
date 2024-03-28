@@ -61,6 +61,11 @@ th, td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
+.footer {
+     margin-top: 265px;
+     padding-top: 85px;
+     text-align: center;
+}
 
 th {
   background-color: #f2f2f2;

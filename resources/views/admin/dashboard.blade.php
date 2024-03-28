@@ -11,11 +11,15 @@
 
 <body>
     <div class="card-header">
-        <a id="pageBtn" style="text-decoration: none" href="#"><img style="width:50px;height:auto"
+        <a id="pageBtn" style="text-decoration: none" href="{{ route('dashboard') }}"><img style="width:50px;height:auto"
                 src="{{ asset('img/logo.jpg') }}"></img></a>
-        <a id="memberBtn" style="text-decoration: none"class="btn btn-primary" href="#giangvien">Quản lý thành viên</a>
-        <a id="roomBtn" style="text-decoration: none"class="btn btn-primary" href="#phong">Quản lý phòng</a>
-        <a id="usageBtn" style="text-decoration: none"class="btn btn-primary" href="#sudung">Lịch sử dùng phòng</a>
+        <a style="text-decoration: none" href="{{ route('trangchu') }}" class="btn btn-primary">
+            < </a>
+                <a id="memberBtn" style="text-decoration: none"class="btn btn-primary" href="#giangvien">Quản lý thành
+                    viên</a>
+                <a id="roomBtn" style="text-decoration: none"class="btn btn-primary" href="#phong">Quản lý phòng</a>
+                <a id="usageBtn" style="text-decoration: none"class="btn btn-primary" href="#sudung">Lịch sử dùng
+                    phòng</a>
     </div>
     @if (session('error'))
         <div class="alert alert-danger">
@@ -69,7 +73,7 @@
                             <td style="font-weight:inherit" class="text-info">{{ $user->email }}</td>
                             <td style="font-weight:bolder" class="text-white">{{ $user->sdt }}</td>
                             <td style="font-weight:bolder" class="text-white">{{ $user->khoa }}</td>
-                            <td style="font-weight:bolder" class="text-white">
+                            <td style="font-weight:bolder" class="text-success">
                                 @if ($user->vai_tro == 'admin')
                                     {{ 'Quản Lý' }}
                                 @else
@@ -139,15 +143,13 @@
                                 </td>
                                 <td>
                                     @if ($phong->trang_thai == 'dang_bao_tri')
-                                        <form action="{{ route('admin.phong.hoan_tat',$phong->id) }}"
-                                            method="POST">
+                                        <form action="{{ route('admin.phong.hoan_tat', $phong->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" class="btn btn-success">Hoàn tất</button>
                                         </form>
                                     @else
-                                        <form action="{{ route('admin.phong.bao_tri',$phong->id) }}"
-                                            method="POST">
+                                        <form action="{{ route('admin.phong.bao_tri', $phong->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" class="btn btn-warning">Bảo trì</button>
@@ -156,12 +158,14 @@
                                 </td>
                                 <td>
                                     <!-- Nút sửa -->
-                                    <a href="{{ route('admin.rooms.edit', $phong->id) }}" class="btn btn-primary">Sửa</a>
+                                    <a href="{{ route('admin.rooms.edit', $phong->id) }}"
+                                        class="btn btn-primary">Sửa</a>
                                     <!-- Nút xoá -->
                                     <form action="{{ route('rooms.destroy', $phong->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa phòng này?')">Xóa</button>
+                                        <button class="btn btn-danger" type="submit"
+                                            onclick="return confirm('Bạn có chắc chắn muốn xóa phòng này?')">Xóa</button>
                                     </form>
                                 </td>
                             </tr>
@@ -181,22 +185,25 @@
                             <th>ID</th>
                             <th>Tên người dùng</th>
                             <th>Tên phòng máy</th>
+                            <th>Thời gian sử dụng</th>
                             <th>Thời gian bắt đầu</th>
                             <th>Thời gian kết thúc</th>
-                            <th>Mô tả</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($lichSu as $suDung)
-                        <tr>
-                            <td style="font-weight:bolder" class="text-white">{{ $suDung->id }}</td>
-                            <td style="font-weight:bold" class="text-success">{{ $suDung->nguoiDung->name }}</td>
-                            <td style="font-weight:bold" class="text-primary">{{ $suDung->phongMay->ten_phong }}</td>
-                            <td class="text-warning">{{ $suDung->mo_ta }}</td>
-                            <td style="font-weight:inherit" class="text-info">{{ $suDung->thoi_gian_bat_dau }}</td>
-                            <td style="font-weight:inherit" class="text-info">{{ $suDung->thoi_gian_ket_thuc }}</td>
-                        </tr>
+                        @foreach ($lichSu as $suDung)
+                            <tr>
+                                <td style="font-weight:bolder" class="text-white">{{ $suDung->id }}</td>
+                                <td style="font-weight:bold" class="text-success">{{ $suDung->nguoiDung->name }}</td>
+                                <td style="font-weight:bold" class="text-primary">{{ $suDung->phongMay->ten_phong }}
+                                </td>
+                                <td class="text-warning">{{ $suDung->mo_ta }}</td>
+                                <td style="font-weight:inherit" class="text-info">{{ $suDung->thoi_gian_bat_dau }}
+                                </td>
+                                <td style="font-weight:inherit" class="text-info">{{ $suDung->thoi_gian_ket_thuc }}
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -205,31 +212,85 @@
     </div>
 </body>
 <!-- Add your JS script here -->
+<!--  footer -->
+<footer>
+    <div class="footer">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Copyright 2024 All Right Reserved By 1nF1 | Nguyễn Tấn Lộc</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->
 <script>
-    document.getElementById("pageBtn").addEventListener("click", function() {
-        document.getElementById("pageContent").style.display = "block";
-        document.getElementById("memberContent").style.display = "none";
-        document.getElementById("roomContent").style.display = "none";
-        document.getElementById("usageContent").style.display = "none";
+    // Lấy ra tất cả các nút
+    var pageBtn = document.getElementById("pageBtn");
+    var memberBtn = document.getElementById("memberBtn");
+    var roomBtn = document.getElementById("roomBtn");
+    var usageBtn = document.getElementById("usageBtn");
+
+    // Lấy ra phần content
+    var pageContent = document.getElementById("pageContent");
+    var memberContent = document.getElementById("memberContent");
+    var roomContent = document.getElementById("roomContent");
+    var usageContent = document.getElementById("usageContent");
+
+    // Thêm sự kiện cho từng nút
+    pageBtn.addEventListener("click", function() {
+        showContent(pageContent);
     });
-    document.getElementById("memberBtn").addEventListener("click", function() {
-        document.getElementById("pageContent").style.display = "none";
-        document.getElementById("memberContent").style.display = "block";
-        document.getElementById("roomContent").style.display = "none";
-        document.getElementById("usageContent").style.display = "none";
+    memberBtn.addEventListener("click", function() {
+        showContent(memberContent);
+    });
+    roomBtn.addEventListener("click", function() {
+        showContent(roomContent);
+    });
+    usageBtn.addEventListener("click", function() {
+        showContent(usageContent);
     });
 
-    document.getElementById("roomBtn").addEventListener("click", function() {
-        document.getElementById("pageContent").style.display = "none";
-        document.getElementById("memberContent").style.display = "none";
-        document.getElementById("roomContent").style.display = "block";
-        document.getElementById("usageContent").style.display = "none";
-    });
+    // Hiển thị nội dung trang khi không có nút nào được nhấp
+    if (!pageBtn.classList.contains('active') && !memberBtn.classList.contains('active') && !roomBtn.classList.contains('active') && !usageBtn.classList.contains('active')) {
+        showContent(pageContent);
+    }
 
-    document.getElementById("usageBtn").addEventListener("click", function() {
-        document.getElementById("pageContent").style.display = "none";
-        document.getElementById("memberContent").style.display = "none";
-        document.getElementById("roomContent").style.display = "none";
-        document.getElementById("usageContent").style.display = "block";
-    });
+    // Hàm hiển thị nội dung
+    function showContent(content) {
+        // Ẩn tất cả các content
+        pageContent.style.display = "none";
+        memberContent.style.display = "none";
+        roomContent.style.display = "none";
+        usageContent.style.display = "none";
+
+        // Hiển thị content được chọn
+        content.style.display = "block";
+
+        // Đặt class active cho nút tương ứng
+        if (content === pageContent) {
+            pageBtn.classList.add('active');
+            memberBtn.classList.remove('active');
+            roomBtn.classList.remove('active');
+            usageBtn.classList.remove('active');
+        } else if (content === memberContent) {
+            pageBtn.classList.remove('active');
+            memberBtn.classList.add('active');
+            roomBtn.classList.remove('active');
+            usageBtn.classList.remove('active');
+        } else if (content === roomContent) {
+            pageBtn.classList.remove('active');
+            memberBtn.classList.remove('active');
+            roomBtn.classList.add('active');
+            usageBtn.classList.remove('active');
+        } else if (content === usageContent) {
+            pageBtn.classList.remove('active');
+            memberBtn.classList.remove('active');
+            roomBtn.classList.remove('active');
+            usageBtn.classList.add('active');
+        }
+    }
 </script>

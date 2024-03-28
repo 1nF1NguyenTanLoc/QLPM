@@ -1,0 +1,1 @@
+<span><?php echo e($message ?? ''); ?></span><?php /**PATH C:\Users\dh520\OneDrive\Desktop\qlpm\resources\views/dashboard.blade.php ENDPATH**/ ?>

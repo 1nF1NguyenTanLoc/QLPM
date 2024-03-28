@@ -99,7 +99,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($data)) 
         {
-            return redirect()->route('trangchu');
+            return redirect()->route('trangchu')->with('success', 'Đăng nhập thành công.');
         }
 
         return view('user.user_login', [
